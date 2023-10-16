@@ -1,8 +1,10 @@
 
 import "./App.css"
-import { CustomerList } from "./components/customers/CustomersList"
-import { TicketList } from "./components/tickets/TicketList.js"
-import {EmployeeList} from "./components/employees/EmployeeList"
+import { Route, Routes } from "react-router-dom"
+import { Login } from "./components/auth/Login"
+import { Register } from "./components/auth/Register"
+import { Authorized } from "./views/Authorized"
+import { ApplicationViews } from "./views/ApplicationViews"
 
 
 
@@ -10,9 +12,19 @@ import {EmployeeList} from "./components/employees/EmployeeList"
 
 
 export const App = () => {
-return <>
- { /*<TicketList />*/}
- <CustomerList />
- <EmployeeList />
-  </>
+return (
+
+<Routes>
+<Route path="/login" element={<Login />} />
+<Route path="/register" element={<Register />} />
+  
+  <Route path="*" element={
+    <Authorized>
+      <ApplicationViews />
+    </Authorized>
+
+  }/>
+  
+</Routes>
+)
 }
